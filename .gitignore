@@ -1,0 +1,15 @@
+# Ignore .NET build and user-specific files
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio temp folder
+.vs/
+
+# Ignore Angular build folders and node modules
+dist/
+node_modules/
+.env
