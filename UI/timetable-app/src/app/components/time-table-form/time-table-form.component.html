@@ -1,0 +1,100 @@
+
+<h1 class="form-title">Dynamic Time Table Generator</h1>
+<h2>Input Details</h2>
+
+<!-- Step 1: User inputs -->
+<div class="input-section" #step1>
+  <label for="workingDays">Working Days:</label>
+  <input
+    id="workingDays"
+    type="number"
+    [(ngModel)]="input.workingDays"
+    (input)="enforceRange($event, 'workingDays', 1, 7)"
+  min="1"
+  max="7"
+    required
+  />
+
+  <label for="subjectsPerDay">Subjects per Day:</label>
+  <input
+    id="subjectsPerDay"
+    type="number"
+    [(ngModel)]="input.subjectsPerDay"
+    min="1"
+    max="8"
+    (input)="enforceRange($event, 'subjectsPerDay', 1, 8)"
+    required
+  />
+
+  <label for="totalSubjects">Total Subjects:</label>
+  <input
+    id="totalSubjects"
+    type="number"
+    [(ngModel)]="input.totalSubjects"
+    min="1"
+    required
+  />
+
+  <button (click)="generateSubjects()">Next</button>
+  <button (click)="resetAll()" style="margin-left: 10px;">Reset</button>
+</div>
+
+<!-- Step 2: Enter subject hours -->
+<div *ngIf="subjectHours.length" class="subjects-section" #step2>
+  <h3>Enter Subject Hours</h3>
+
+  <div *ngFor="let subject of subjectHours; let i = index" class="subject-row">
+    <input
+      [(ngModel)]="subject.subjectName"
+      placeholder="Subject Name"
+      name="subjectName{{i}}"
+      required
+    />
+    <input
+      type="number"
+      [(ngModel)]="subject.hours"
+      placeholder="Hours"
+      name="hours{{i}}"
+      min="1"
+      required
+    />
+  </div>
+
+  <p *ngIf="totalHoursEntered !== totalHoursRequired" style="color: red;">
+  Total hours must equal {{ totalHoursRequired }}. You entered {{ totalHoursEntered }}.
+</p>
+
+  <button
+    [disabled]="!areSubjectHoursValid()"
+    (click)="generateTimeTable()"
+    [ngClass]="{
+    'error-button': totalHoursEntered !== totalHoursRequired,
+    'normal-button': totalHoursEntered === totalHoursRequired
+  }"
+  >
+    Generate Time Table
+  </button>
+</div>
+
+<!-- Step 3: Show final timetable -->
+<div *ngIf="timeTable.length" class="table-section" #step3>
+  
+<div class="table-header">
+  <h3>Final Time Table</h3>
+  <button (click)="exportToExcel()">⬇️ Export to Excel</button>
+</div>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let day of timeTable[0]; let i = index">Day {{ i + 1 }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of timeTable">
+        <td *ngFor="let subject of row">{{ subject }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

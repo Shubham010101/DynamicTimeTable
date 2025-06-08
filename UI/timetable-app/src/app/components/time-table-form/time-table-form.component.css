@@ -1,0 +1,230 @@
+/* Base page styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f7fa;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+/* Container spacing */
+.input-section,
+.subjects-section,
+.table-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px 30px 35px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.input-section:hover,
+.subjects-section:hover,
+.table-section:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+h2, h3 {
+  position: relative;
+  display: inline-block; /* text width */
+  padding-bottom: 8px;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+h2::after, h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; /* matches text width */
+  height: 3px;
+  background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+  border-radius: 3px;
+}
+
+/* Labels and inputs */
+label {
+  display: block;
+  margin: 15px 0 6px;
+  font-weight: 600;
+  color: #444;
+  font-size: 15px;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.8px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.5);
+}
+
+/* Subject row layout */
+.subject-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.subject-row input {
+  flex: 1;
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+  padding: 11px 24px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.5);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #2980b9, #2471a3);
+  box-shadow: 0 6px 16px rgba(41, 128, 185, 0.7);
+}
+
+button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button + button {
+  margin-left: 12px;
+}
+
+/* Error message */
+p[style*="color: red"] {
+  margin-top: 12px;
+  font-weight: 700;
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  background-color: #fefefe;
+  transition: background-color 0.3s;
+}
+
+th {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+tr:nth-child(even) td {
+  background-color: #f9fafe;
+}
+
+tr:hover td {
+  background-color: #d6e9ff;
+}
+
+.form-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Default (valid) button styling */
+.normal-button {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+}
+
+/* Error (invalid total hours) button styling */
+.error-button {
+  background: linear-gradient(90deg, #e74c3c, #c0392b); /* red tones */
+  color: #fff;
+}
+
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.table-header h3 {
+  margin: 0;
+}
+
+/* Optional: keep spacing and consistency with other buttons */
+.table-header button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.table-header button:hover {
+  background: linear-gradient(90deg, #2980b9, #2471a3);
+}
+
+
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .subject-row {
+    flex-direction: column;
+  }
+
+  input[type="number"],
+  input[type="text"] {
+    font-size: 16px;
+  }
+
+  th, td {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
